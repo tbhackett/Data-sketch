@@ -21,7 +21,7 @@ async function setup() {
 
   for (let i = 0; i < table.getRowCount(); i++){
 
-  imageArray[i] = await loadImage('images/' + table.getString(i, 'image'))
+  imageArray[i] = await loadImage('images/' + table.getString(i, 'Image'))
   }
 
   print(imageArray)
@@ -39,30 +39,35 @@ async function setup() {
     //grab each of the dates
     let date = table.getString(i, 'Date')
     let app = table.getString(i, 'App')
-
+    let video = table.getString(i, 'Video')
     appMenu.option(app)   
 
+    text(video, 300, (10*i)+ 20)
+
   }
-}
 
   submitButton.mousePressed(changeData)
+}
+
+  
 
 
 
 function changeData(){
   background(0)
   textSize(30)
+  fill(255)
   textAlign(CENTER)
   imageMode(CENTER)
   for (let i = 0; i < table.getRowCount(); i++){
-    if(appMenu.value() == table.getString(i, 'app')){
-      text(table.getString(i, 'app'), windowWidth/2, 50)
-      text(table.getString(i, 'video'), windowWidth/2, 90)
-      text(table.getString(i, 'liked'), windowWidth/2, 130)
-      text(table.getString(i, 'date'), windowWidth/2, 170)
-      for(let j = 0; j < table.getString(i, 'frequency'); j++){
+    if(appMenu.value() == table.getString(i, 'App')){
+      text(table.getString(i, 'App'), windowWidth/2, 50)
+      text(table.getString(i, 'Video'), windowWidth/2, 90)
+      text(table.getString(i, 'Liked'), windowWidth/2, 130)
+      text(table.getString(i, 'Date'), windowWidth/2, 170)
+      
         image(imageArray[i], random(windowWidth), random(windowHeight), 30, 30)
-      }
+      
 
     }
   }
